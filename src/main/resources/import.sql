@@ -1,0 +1,1 @@
+INSERT INTO car (id,name,type) VALUES (1,'prius','hybrid');
