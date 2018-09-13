@@ -11,20 +11,20 @@ import com.demo.tdd.repository.CarRepository;
 @Service
 public class CarService {
 
+	private CarRepository carRepository;
 
-    private CarRepository carRepository;
+	@Autowired
+	public CarService(CarRepository carRepository) {
+		this.carRepository = carRepository;
+	}
 
-    @Autowired
-    public CarService(CarRepository carRepository) {
-        this.carRepository = carRepository;
-    }
+	@Cacheable("cars")
+	public Car getCarDetails(String carName) {
+		Car car = carRepository.findByName(carName);
+		if (car == null) {
+			throw new CarNotFoundException();
+		}
+		return car;
+	}
 
-    @Cacheable("cars")
-    public Car getCarDetails(String carName) {
-        Car car = carRepository.findByName(carName);
-        if(car == null){
-            throw new CarNotFoundException();
-        }
-        return car;
-    }
 }

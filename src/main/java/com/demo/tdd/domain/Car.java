@@ -11,14 +11,14 @@ import lombok.Data;
 public class Car {
 
 	@Id
-    @GeneratedValue
-    private Long id;
+	@GeneratedValue
+	private Long id;
 
-    private String name;
+	private String name;
 
-    private String type;
-    
-    public Car(String name, String type) {
+	private String type;
+
+	public Car(String name, String type) {
 		this.name = name;
 		this.type = type;
 	}

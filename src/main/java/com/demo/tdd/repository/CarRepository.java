@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.demo.tdd.domain.Car;
 
 @Repository
-public interface CarRepository extends JpaRepository<Car,Long> {
-    Car findByName(String carName);
+public interface CarRepository extends JpaRepository<Car, Long> {
+
+	Car findByName(String carName);
+
 }

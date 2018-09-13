@@ -22,31 +22,32 @@ import com.demo.tdd.service.CarService;
 @WebMvcTest(CarController.class)
 public class CarControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+	@Autowired
+	private MockMvc mockMvc;
 
-    @MockBean
-    private CarService carService;
+	@MockBean
+	private CarService carService;
 
-    @Test
-    public void getCar_ShouldReturnCar() throws Exception {
+	@Test
+	public void getCar_ShouldReturnCar() throws Exception {
 
-        given(carService.getCarDetails(anyString())).willReturn(new Car("prius","hybrid"));
+		given(carService.getCarDetails(anyString()))
+				.willReturn(new Car("prius", "hybrid"));
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/cars/prius"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("name").value("prius"))
-                .andExpect(jsonPath("type").value("hybrid"));
+		mockMvc.perform(MockMvcRequestBuilders.get("/cars/prius"))
+				.andExpect(status().isOk()).andExpect(jsonPath("name").value("prius"))
+				.andExpect(jsonPath("type").value("hybrid"));
 
-    }
+	}
 
-    @Test
-    public void getCar_notFound() throws Exception{
-        given(carService.getCarDetails(anyString())).willThrow(new CarNotFoundException());
+	@Test
+	public void getCar_notFound() throws Exception {
+		given(carService.getCarDetails(anyString()))
+				.willThrow(new CarNotFoundException());
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/cars/toyota"))
-                .andExpect(status().isNotFound());
+		mockMvc.perform(MockMvcRequestBuilders.get("/cars/toyota"))
+				.andExpect(status().isNotFound());
 
-    }
+	}
 
 }

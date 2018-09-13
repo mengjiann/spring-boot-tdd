@@ -24,29 +24,29 @@ import com.demo.tdd.service.CarService;
 @AutoConfigureCache
 public class CachingTest {
 
-    // Will require the spring application content for testing on the cache.
-    // Therefore, will need to include the spring boot test.
-    // But, since we do not require to test on the server, we will change the web environment to none.
+	// Will require the spring application content for testing on the cache.
+	// Therefore, will need to include the spring boot test.
+	// But, since we do not require to test on the server, we will change the web
+	// environment to none.
 
-    // Can also specify the cache config class
+	// Can also specify the cache config class
 
-    @Autowired
-    private CarService service;
+	@Autowired
+	private CarService service;
 
-    @MockBean
-    private CarRepository carRepository;
+	@MockBean
+	private CarRepository carRepository;
 
-    @Test
-    public void caching() throws Exception {
+	@Test
+	public void caching() throws Exception {
 
-        given(carRepository.findByName(anyString())).willReturn(new Car("prius","hybrid"));
+		given(carRepository.findByName(anyString()))
+				.willReturn(new Car("prius", "hybrid"));
 
-        service.getCarDetails("prius");
-        service.getCarDetails("prius");
+		service.getCarDetails("prius");
+		service.getCarDetails("prius");
 
-        verify(carRepository, times(1)).findByName("prius");
-    }
-
-
+		verify(carRepository, times(1)).findByName("prius");
+	}
 
 }

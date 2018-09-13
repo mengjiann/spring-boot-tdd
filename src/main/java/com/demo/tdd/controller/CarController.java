@@ -14,23 +14,22 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class CarController {
 
-    private CarService carService;
+	private CarService carService;
 
-    @Autowired
-    public CarController(CarService carService) {
-        this.carService = carService;
-    }
+	@Autowired
+	public CarController(CarService carService) {
+		this.carService = carService;
+	}
 
-    @GetMapping("/cars/{name}")
-    private Car getCart(@PathVariable("name") String carName){
-        return carService.getCarDetails(carName);
-    }
+	@GetMapping("/cars/{name}")
+	private Car getCart(@PathVariable("name") String carName) {
+		return carService.getCarDetails(carName);
+	}
 
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    private void carNotFoundHandler(CarNotFoundException ex){
-    	log.error("Entering and leaving CarController : carNotFoundHandler");
-    }
-
+	@ExceptionHandler
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	private void carNotFoundHandler(CarNotFoundException ex) {
+		log.error("Entering and leaving CarController : carNotFoundHandler");
+	}
 
 }

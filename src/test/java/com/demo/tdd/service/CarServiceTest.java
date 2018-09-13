@@ -16,31 +16,31 @@ import com.demo.tdd.repository.CarRepository;
 @RunWith(MockitoJUnitRunner.class)
 public class CarServiceTest {
 
-    @Mock
-    private CarRepository carRepository;
+	@Mock
+	private CarRepository carRepository;
 
-    private CarService carService;
+	private CarService carService;
 
-    @Before
-    public void setUp() throws Exception {
-        carService = new CarService(carRepository);
-    }
+	@Before
+	public void setUp() throws Exception {
+		carService = new CarService(carRepository);
+	}
 
-    @Test
-    public void getCarDetails_returnCarInfo() {
-       given(carRepository.findByName("prius")).willReturn( new Car("prius","hybrid"));
+	@Test
+	public void getCarDetails_returnCarInfo() {
+		given(carRepository.findByName("prius")).willReturn(new Car("prius", "hybrid"));
 
-       Car car = carService.getCarDetails("prius");
+		Car car = carService.getCarDetails("prius");
 
-       assertThat(car.getName()).isEqualTo("prius");
-       assertThat(car.getType()).isEqualTo("hybrid");
-    }
+		assertThat(car.getName()).isEqualTo("prius");
+		assertThat(car.getType()).isEqualTo("hybrid");
+	}
 
-    @Test(expected = CarNotFoundException.class)
-    public void getCarDetails_whenCarNotFound() throws Exception{
-        given(carRepository.findByName("prius")).willReturn(null);
+	@Test(expected = CarNotFoundException.class)
+	public void getCarDetails_whenCarNotFound() throws Exception {
+		given(carRepository.findByName("prius")).willReturn(null);
 
-        carService.getCarDetails("prius");
-    }
+		carService.getCarDetails("prius");
+	}
 
 }

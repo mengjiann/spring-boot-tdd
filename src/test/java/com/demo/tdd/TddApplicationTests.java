@@ -25,8 +25,8 @@ public class TddApplicationTests {
 		// arrange
 
 		// act
-		ResponseEntity<Car> response = restTemplate
-				.getForEntity("/cars/prius",Car.class);
+		ResponseEntity<Car> response = restTemplate.getForEntity("/cars/prius",
+				Car.class);
 
 		// assert
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
