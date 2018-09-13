@@ -3,10 +3,14 @@ package com.demo.tdd.controller;
 import com.demo.tdd.domain.Car;
 import com.demo.tdd.exception.CarNotFoundException;
 import com.demo.tdd.service.CarService;
+
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 public class CarController {
 
@@ -25,6 +29,7 @@ public class CarController {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     private void carNotFoundHandler(CarNotFoundException ex){
+    	log.error("Entering and leaving CarController : carNotFoundHandler");
     }
 
 
