@@ -1,9 +1,10 @@
 package com.demo.tdd;
 
-import com.demo.tdd.config.CachingConfig;
-import com.demo.tdd.domain.Car;
-import com.demo.tdd.repository.CarRepository;
-import com.demo.tdd.service.CarService;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import com.demo.tdd.domain.Car;
+import com.demo.tdd.repository.CarRepository;
+import com.demo.tdd.service.CarService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
